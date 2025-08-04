@@ -33,3 +33,8 @@ release/
 
 # Java class files
 *.class
+app/build/
+core/build/
+data/build/
+domain/build/
+features/build/

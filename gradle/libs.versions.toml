@@ -1,4 +1,6 @@
 [versions]
+min-sdk-version = "24"
+target-sdk-version = "36"
 agp = "8.11.1"
 kotlin = "2.0.21"
 coreKtx = "1.16.0"
@@ -17,6 +19,7 @@ retrofit-version = "2.9.0"
 okhttp_version = "4.9.1"
 preferences-data-store-version = "1.1.7"
 hilt-navigation-compose-version = "1.2.0"
+coil-version = "2.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,7 +32,6 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt-version" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt-version" }
-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigation-version" }
 moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi-version" }
 moshi-adapter = { group = "com.squareup.moshi", name = "moshi-adapters", version.ref = "moshi-version" }
 moshi-ksp = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", version.ref = "moshi-version" }
@@ -44,7 +46,10 @@ compose-material = { group = "androidx.compose.material", name = "material" }
 compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose-version" }
 compose-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil-version"  }
+
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -53,6 +58,7 @@ kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
 navigation-safeargs = { id = "androidx.navigation.safeargs", version.ref = "navigation-version" }
 navigation-safeargs-kotlin = { id = "androidx.navigation.safeargs.kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 
 
 
