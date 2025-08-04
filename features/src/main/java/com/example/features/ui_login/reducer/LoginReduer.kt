@@ -1,6 +1,6 @@
 package com.example.features.ui_login.reducer
 
-import com.example.core.common.Reducer
+import com.example.data.common_data.Reducer
 import com.example.features.ui_login.LoginIntent
 import com.example.features.ui_login.state.LoginUiState
 import javax.inject.Inject

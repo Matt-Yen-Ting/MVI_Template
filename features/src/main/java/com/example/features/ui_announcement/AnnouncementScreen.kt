@@ -26,12 +26,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.core.design_system.BackPreviousIcon
 import com.example.core.design_system.MainTopBar
-import com.example.domain.model.data.navigation.Screen
+import com.example.data.common_data.navigation.Screen
 import com.example.features.ui_announcement.state.DataListUiState
 
 @Composable

@@ -1,4 +1,4 @@
-package com.example.domain.model.data.navigation
+package com.example.data.common_data.navigation
 
 sealed class Screen(val route: String) {
     data object SplashScreen : Screen("splash")

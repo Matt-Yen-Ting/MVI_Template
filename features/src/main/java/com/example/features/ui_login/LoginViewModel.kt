@@ -2,7 +2,6 @@ package com.example.features.ui_login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.datastore.PreferencesDataStore
 import com.example.domain.usecase.account.AccountUseCases
 import com.example.features.ui_login.reducer.LoginReducer
 import com.example.features.ui_login.state.LoginUiState
@@ -16,7 +15,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val preferencesDataStore: PreferencesDataStore,
     private val accountUseCases: AccountUseCases,
     private val loginReducer: LoginReducer
 ) : ViewModel() {
@@ -58,7 +56,7 @@ class LoginViewModel @Inject constructor(
                 )
             }
             accountUseCases.login(account)
-            preferencesDataStore.setToken("TestLoginToken")
+            accountUseCases.setToken("TestLoginToken")
             _loginUiState.update {
                 loginReducer.reduce(
                     _loginUiState.value,

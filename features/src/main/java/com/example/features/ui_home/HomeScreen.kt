@@ -17,7 +17,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,9 +32,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.core.design_system.BackPreviousIcon
 import com.example.core.design_system.MainTopBar
-import com.example.domain.model.data.navigation.Screen
+import com.example.data.common_data.navigation.Screen
 import com.example.features.ui_home.state.LogoutUiState
-import com.example.features.ui_login.state.LoginUiState
 
 @Composable
 fun HomeScreen(

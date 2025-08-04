@@ -2,7 +2,6 @@ package com.example.features.ui_home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.datastore.PreferencesDataStore
 import com.example.domain.usecase.account.AccountUseCases
 import com.example.features.ui_home.reducer.LogoutReducer
 import com.example.features.ui_home.state.LogoutUiState
@@ -16,7 +15,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val preferencesDataStore: PreferencesDataStore,
     private val accountUseCases: AccountUseCases,
     private val logoutReducer: LogoutReducer
 ) : ViewModel() {
@@ -50,7 +48,7 @@ class HomeViewModel @Inject constructor(
                 )
             }
             accountUseCases.logout()
-            preferencesDataStore.setToken("")
+            accountUseCases.setToken("")
             _logoutUiState.update {
                 logoutReducer.reduce(
                     _logoutUiState.value,

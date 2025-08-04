@@ -7,7 +7,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.domain.model.data.navigation.Screen
+import com.example.data.common_data.navigation.Screen
 import com.example.mvi_architecture.main.MainViewModel
 import com.example.features.ui_announcement.AnnouncementDetailScreen
 import com.example.features.ui_announcement.AnnouncementScreen

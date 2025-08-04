@@ -1,6 +1,6 @@
 package com.example.features.ui_announcement.reducer
 
-import com.example.core.common.Reducer
+import com.example.data.common_data.Reducer
 import com.example.features.ui_announcement.AnnouncementIntent
 import com.example.features.ui_announcement.state.DataListUiState
 import javax.inject.Inject
