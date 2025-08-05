@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MVI_architecture</string>
+    <string name="check_announcement">Check Announcement</string>
+    <string name="home_page">Home Page</string>
+    <string name="logout_success">Logout Success!!</string>
+    <string name="do_you_want_to_log_out">Do you want to log out?</string>
+    <string name="confirm">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="logout_error">Logout error!!</string>
+    <string name="login_screen">Login Page</string>
+    <string name="login_page">Login Page</string>
+    <string name="log_in">Login in</string>
+    <string name="failed_to_obtain_list_information">Failed to obtain list information</string>
+    <string name="announcement_page">Announcement Page</string>
+    <string name="announcement_detail_page">Announcement Detail Page</string>
+    <string name="this_is_the_title">This is the Title:</string>
+</resources>

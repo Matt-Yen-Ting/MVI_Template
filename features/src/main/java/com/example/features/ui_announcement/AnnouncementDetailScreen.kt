@@ -11,14 +11,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.core.design_system.BackPreviousIcon
-import com.example.core.design_system.MainTopBar
+import com.example.core.design_system.common_view.BackPreviousIcon
+import com.example.core.design_system.common_view.MainTopBar
+import com.example.core.R
 
 @Composable
 fun AnnouncementDetailScreen(
@@ -46,7 +48,7 @@ fun AnnouncementDetailScreenContent(
                     }
                 },
                 title = {
-                    Text("Announcement Detail Page")
+                    Text(stringResource(R.string.announcement_detail_page))
                 }
             )
         }
@@ -63,7 +65,7 @@ fun AnnouncementDetailScreenContent(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text("這是傳過來Title:", fontSize = 16.sp, color = Color.Red)
+                Text(stringResource(R.string.this_is_the_title), fontSize = 16.sp, color = Color.Red)
                 Text(
                     title,
                     fontSize = 14.sp,

@@ -23,15 +23,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.core.design_system.BackPreviousIcon
-import com.example.core.design_system.MainTopBar
+import com.example.core.design_system.common_view.BackPreviousIcon
+import com.example.core.design_system.common_view.MainTopBar
 import com.example.data.common_data.navigation.Screen
 import com.example.features.ui_announcement.state.DataListUiState
+import com.example.core.R
 
 @Composable
 fun AnnouncementScreen(
@@ -63,7 +65,7 @@ fun AnnouncementScreenContent(
                     }
                 },
                 title = {
-                    Text("Announcement Page")
+                    Text(stringResource(R.string.announcement_page))
                 }
             )
         }
@@ -127,7 +129,7 @@ fun HandleGetDataListUiState(
         }
 
         dataListUiState.getDataFail -> {
-            Toast.makeText(context, "取得列表資料失敗!!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, stringResource(R.string.failed_to_obtain_list_information), Toast.LENGTH_SHORT).show()
         }
     }
 }

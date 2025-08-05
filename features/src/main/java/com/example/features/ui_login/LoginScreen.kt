@@ -22,14 +22,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.example.core.design_system.MainTopBar
+import com.example.core.design_system.common_view.MainTopBar
 import com.example.data.common_data.navigation.Screen
 import com.example.features.ui_login.state.LoginUiState
+import com.example.core.R
 
 @Composable
 fun LoginScreen(
@@ -54,7 +56,7 @@ fun LoginScreenContent(
         topBar = {
             MainTopBar(
                 title = {
-                    Text("Login Page")
+                    Text(stringResource(R.string.login_page))
                 }
             )
         }
@@ -84,7 +86,7 @@ fun LoginScreenContent(
                             sendIntent(LoginIntent.Login(""))
                         }
                     ) {
-                        Text("Login in")
+                        Text(stringResource(R.string.log_in))
                     }
                 }
                 if (uiState.showLoading) {
