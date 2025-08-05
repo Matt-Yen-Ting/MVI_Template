@@ -84,13 +84,15 @@ fun HomeScreenContent(
                     Text(stringResource(R.string.home_page))
                 }
             )
+        },
+        bottomBar = {
+            HomeBottomBar(navHostController, true)
         }
-
     ) { contentPadding ->
         Column(
             modifier = Modifier
                 .padding(contentPadding)
-                .background(Color.White)
+                .background(Color.Black)
         ) {
             BackHandler {
                 showLogoutDialog.value = true

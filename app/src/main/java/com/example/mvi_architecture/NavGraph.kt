@@ -8,6 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.data.common_data.navigation.Screen
+import com.example.features.account.AccountScreen
+import com.example.features.more.MoreScreen
 import com.example.mvi_architecture.main.MainViewModel
 import com.example.features.ui_announcement.AnnouncementDetailScreen
 import com.example.features.ui_announcement.AnnouncementScreen
@@ -46,6 +48,14 @@ fun NavGraph(navHostController: NavHostController, viewModel: MainViewModel = hi
                 navHostController,
                 stackEntry.arguments?.getString("title") ?: ""
             )
+        }
+
+        composable(Screen.AccountScreen.route) {
+            AccountScreen(navHostController)
+        }
+
+        composable(Screen.MoreScreen.route) {
+            MoreScreen(navHostController)
         }
     }
 }

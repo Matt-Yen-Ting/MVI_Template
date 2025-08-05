@@ -2,6 +2,8 @@
     <string name="app_name">MVI_architecture</string>
     <string name="check_announcement">Check Announcement</string>
     <string name="home_page">Home Page</string>
+    <string name="account_page">Account Page</string>
+    <string name="more_page">More Page</string>
     <string name="logout_success">Logout Success!!</string>
     <string name="do_you_want_to_log_out">Do you want to log out?</string>
     <string name="confirm">Yes</string>
@@ -14,4 +16,7 @@
     <string name="announcement_page">Announcement Page</string>
     <string name="announcement_detail_page">Announcement Detail Page</string>
     <string name="this_is_the_title">This is the Title:</string>
+    <string name="overview">Overview</string>
+    <string name="account">Account</string>
+    <string name="more">More</string>
 </resources>
