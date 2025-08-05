@@ -1,5 +1,7 @@
 package theme
 
+
+import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
@@ -7,8 +9,12 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.ViewCompat
 import com.example.core.design_system.theme.SageBlue
 import com.example.core.design_system.theme.Shapes
 import com.example.core.design_system.theme.Teal200
@@ -18,13 +24,14 @@ import com.example.core.design_system.theme.Typography
 private val DarkColorPalette = darkColors(
     primary = SageBlue,
     primaryVariant = TurquoiseBlue,
-    secondary = Teal200
+    secondary = Teal200,
 )
 
 private val LightColorPalette = lightColors(
     primary = SageBlue,
     primaryVariant = TurquoiseBlue,
-    secondary = Teal200
+    secondary = Teal200,
+
 
     /* Other default colors to override
     background = Color.White,
@@ -37,7 +44,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun MobileCAndroidRETheme(
+fun MainTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {

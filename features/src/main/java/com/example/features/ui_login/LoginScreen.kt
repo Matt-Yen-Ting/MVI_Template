@@ -1,5 +1,6 @@
 package com.example.features.ui_login
 
+import android.os.Build
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
@@ -61,8 +62,13 @@ fun LoginScreenContent(
             )
         }
 
-    ) { padding ->
-        Column(modifier = Modifier.padding(padding)) {
+    ) { contentPadding ->
+        Column(
+            modifier = Modifier.padding(
+                top = contentPadding.calculateTopPadding(),
+                bottom = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) contentPadding.calculateBottomPadding() else 0.dp
+            )
+        ) {
             BackHandler {
 
             }

@@ -1,5 +1,6 @@
 package com.example.features.ui_announcement
 
+import android.os.Build
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
@@ -8,7 +9,11 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -69,28 +74,25 @@ fun AnnouncementScreenContent(
                 }
             )
         }
-
     ) { contentPadding ->
         BackHandler {
             navHostController.popBackStack()
         }
         Column(
             modifier = Modifier
-                .padding(contentPadding)
-                .background(Color.White)
+                .padding(top = contentPadding.calculateTopPadding(), bottom =if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM)  contentPadding.calculateBottomPadding() else 0.dp)
         ) {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Column(modifier = Modifier.fillMaxSize()) {
+                    HandleGetDataListUiState(navHostController, getDataListUiState, sendIntent)
+                }
                 if (getDataListUiState.showLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(100.dp),
                         color = Color.Red
                     )
                 }
-                Column(modifier = Modifier.fillMaxSize()) {
-                    HandleGetDataListUiState(navHostController, getDataListUiState, sendIntent)
-                }
             }
-
         }
     }
 }
@@ -105,7 +107,7 @@ fun HandleGetDataListUiState(
     when {
         dataListUiState.getDataSuccess -> {
             if (dataListUiState.dataList.isNotEmpty()) {
-                LazyColumn {
+                LazyColumn(Modifier.fillMaxHeight()) {
                     items(dataListUiState.dataList) {
                         Box(
                             modifier = Modifier
@@ -117,7 +119,7 @@ fun HandleGetDataListUiState(
                                     navHostController.navigate(Screen.AnnouncementDetailScreen.route + "?title=${it.title}")
                                 }
                         ) {
-                            Column {
+                            Column(modifier = Modifier.padding(3.dp)) {
                                 Text(it.posted, modifier = Modifier.padding(3.dp))
                                 Text(it.title)
                             }
@@ -129,7 +131,11 @@ fun HandleGetDataListUiState(
         }
 
         dataListUiState.getDataFail -> {
-            Toast.makeText(context, stringResource(R.string.failed_to_obtain_list_information), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context,
+                stringResource(R.string.failed_to_obtain_list_information),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 }

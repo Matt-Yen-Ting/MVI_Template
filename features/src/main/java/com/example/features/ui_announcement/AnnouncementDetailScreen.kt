@@ -1,5 +1,6 @@
 package com.example.features.ui_announcement
 
+import android.os.Build
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -56,8 +57,10 @@ fun AnnouncementDetailScreenContent(
     ) { contentPadding ->
         Column(
             modifier = Modifier
-                .padding(contentPadding)
-                .background(Color.White)
+                .padding(
+                    top = contentPadding.calculateTopPadding(),
+                    bottom = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) contentPadding.calculateBottomPadding() else 0.dp
+                )
                 .fillMaxSize()
         ) {
             Column(
@@ -65,7 +68,11 @@ fun AnnouncementDetailScreenContent(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(stringResource(R.string.this_is_the_title), fontSize = 16.sp, color = Color.Red)
+                Text(
+                    stringResource(R.string.this_is_the_title),
+                    fontSize = 16.sp,
+                    color = Color.Red
+                )
                 Text(
                     title,
                     fontSize = 14.sp,

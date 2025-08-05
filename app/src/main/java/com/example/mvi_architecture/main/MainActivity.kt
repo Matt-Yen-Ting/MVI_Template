@@ -1,19 +1,24 @@
 package com.example.mvi_architecture.main
 
-import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.runtime.Composable
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalDensity
 import androidx.navigation.compose.rememberNavController
 import com.example.mvi_architecture.NavGraph
 import dagger.hilt.android.AndroidEntryPoint
-import theme.MobileCAndroidRETheme
+import theme.MainTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -21,29 +26,39 @@ class MainActivity : ComponentActivity() {
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            MobileCAndroidRETheme {
+            MainTheme {
                 SetUpNavGraph()
+                StatusBarProtection()
+//                BottomBarProtection()
+
             }
         }
-        initView()
     }
 
-    private fun initView() {
-        ViewCompat.setOnApplyWindowInsetsListener(window.decorView) { view, insets ->
-            view.setBackgroundColor(Color.BLACK)
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.updatePadding(
-                top = systemBars.top,
-                bottom = systemBars.bottom
+    @Composable
+    fun StatusBarProtection() {
+        val statusBars = androidx.compose.foundation.layout.WindowInsets.statusBars
+        val density = LocalDensity.current
+        Canvas(Modifier.fillMaxSize()) {
+            val calculatedHeight = statusBars.getTop(density).times(1f)
+            val gradient = Brush.verticalGradient(
+                colors = listOf(
+                    androidx.compose.ui.graphics.Color.Black,
+                    androidx.compose.ui.graphics.Color.Black,
+                    androidx.compose.ui.graphics.Color.Black
+                ),
+                startY = 0f,
+                endY = calculatedHeight
             )
-            insets
+            drawRect(
+                brush = gradient,
+                size = Size(size.width, calculatedHeight),
+            )
         }
-
     }
+
 
     @Composable
     fun SetUpNavGraph() {

@@ -4,6 +4,11 @@ import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Text
@@ -11,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -84,6 +90,7 @@ fun RowScope.AddItem(
         mutableStateOf(false)
     }
     BottomNavigationItem(
+        modifier = Modifier.padding(bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()),
         label = {
             Text(homeBottomBarData.title, color =
                 when {
@@ -94,6 +101,7 @@ fun RowScope.AddItem(
         },
         icon = {
             Image(
+                modifier = Modifier.size(36.dp),
                 painter = painterResource(
                     when {
                         isHomeChildRoute && homeBottomBarData.route == currentDestination?.route -> homeBottomBarData.selectedIconId
