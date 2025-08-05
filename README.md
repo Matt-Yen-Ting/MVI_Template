@@ -64,10 +64,10 @@ project/
 5. 每個UiState 用特定Ui、事件命名，Ex:LoginUiState、CancelButtonUiState
 
 ### Model相關
-1. 資料邏輯interface、資料邏輯interface implementation 放 Repository，並建立自己的資料夾
+1. 資料邏輯interface、資料邏輯interface implementation 放 Repository，並建立相關類別資料夾
 2. 資料邏輯interface implementation以Impl結尾
 3. UseCase以類別產生data class
-4. UseCase底下各功能 時以suspend operator fun invoke() 創建．並產山類別功能資料夾分類
+4. UseCase底下各功能 時以suspend operator fun invoke() 創建．並建立類別功能資料夾分類
 5. Api 解析data、轉換data放 domain Module model entities package
 6. 共用Data 放 data module common_data package，Ex:Navigation Screen route sealed class
 
