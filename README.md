@@ -62,6 +62,7 @@ project/
 3. ViewModel 觸發Intent 統一 function name sendIntent
 4. StateFlow 統一使用update{ } 更新Reducer
 5. 每個UiState 用特定Ui、事件命名，Ex:LoginUiState、CancelButtonUiState
+6. Reducer 繼承共用Reducer實作更新UiState的Reducer
 
 ### Model相關
 1. 資料邏輯interface、資料邏輯interface implementation 放 Repository，並建立相關類別資料夾
@@ -79,7 +80,7 @@ project/
 ### 有用到的Android JetPack Library
 1. Android KTX
 2. Navigation
-3. Hilt(DI)，此項可討論是否改用Koin
+3. Hilt(DI)
 4. DataStore
 5. Compose
 
