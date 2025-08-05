@@ -68,6 +68,8 @@ project/
 2. 資料邏輯interface implementation以Impl結尾
 3. UseCase以類別產生data class
 4. UseCase底下各功能 時以suspend operator fun invoke() 創建．並產山類別功能資料夾分類
+5. Api 解析data、轉換data放 domain Module model entities package
+6. 共用Data 放 data module common_data package，Ex:Navigation Screen route sealed class
 
 ### Api相關
 1. Api Retrofit Okhttp 等封裝放Core Module network
