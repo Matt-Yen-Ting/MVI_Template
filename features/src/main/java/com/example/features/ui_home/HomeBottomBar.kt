@@ -64,6 +64,7 @@ fun HomeBottomBar(
 
     Column {
         BottomNavigation(
+            modifier = Modifier.padding(bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()),
             backgroundColor = Color.White,
             elevation = 0.dp
         ) {
@@ -90,7 +91,6 @@ fun RowScope.AddItem(
         mutableStateOf(false)
     }
     BottomNavigationItem(
-        modifier = Modifier.padding(bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()),
         label = {
             Text(homeBottomBarData.title, color =
                 when {

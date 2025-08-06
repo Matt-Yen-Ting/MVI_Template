@@ -59,6 +59,7 @@ dependencies {
     api(libs.hilt.navigation.compose)
     api(libs.compose.preview)
     api(libs.compose.ui)
+    api(libs.compose.constraintlayout)
     debugApi(libs.compose.ui.tooling)
 
     // Jetpack
