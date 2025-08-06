@@ -8,6 +8,4 @@ interface AccountRepository {
     suspend fun login(account: String): LoginResponseDto
 
     suspend fun logout()
-
-    suspend fun getAnnouncementList(): AnnouncementResponseDto
 }

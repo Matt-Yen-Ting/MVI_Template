@@ -97,7 +97,7 @@ class MainActivity : ComponentActivity() {
 
             }
         } else {
-            window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
         }
     }
 

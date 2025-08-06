@@ -14,7 +14,4 @@ class AccountRepositoryImpl @Inject constructor(
 
 
     override suspend fun logout() = apiRepository.logout()
-
-    override suspend fun getAnnouncementList(): AnnouncementResponseDto =
-        apiRepository.getAnnouncementList()
 }
