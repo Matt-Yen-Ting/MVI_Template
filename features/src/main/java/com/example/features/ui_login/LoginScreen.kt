@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -119,7 +120,7 @@ private fun HandleLoginUiState(
         uiState.loginSuccess -> {
             Toast.makeText(context, "登入成功!!", Toast.LENGTH_SHORT).show()
             sendIntent(LoginIntent.ResetState())
-            LaunchedEffect(Unit) {
+            SideEffect {
                 navHostController.navigate(Screen.HomeScreen.route)
             }
         }

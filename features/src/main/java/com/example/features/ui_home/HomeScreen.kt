@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -129,7 +130,7 @@ private fun HandleLogoutUiState(
     when {
         logoutUiState.logoutSuccess -> {
             Toast.makeText(context, stringResource(R.string.logout_success), Toast.LENGTH_SHORT).show()
-            LaunchedEffect(Unit) {
+            SideEffect {
                 navHostController.popBackStack()
                 navHostController.navigate(Screen.LoginScreen.route)
             }
