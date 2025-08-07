@@ -1,5 +1,6 @@
 package com.example.features.ui_login
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.account.AccountUseCases
@@ -18,6 +19,9 @@ class LoginViewModel @Inject constructor(
     private val accountUseCases: AccountUseCases,
     private val loginReducer: LoginReducer
 ) : ViewModel() {
+
+    var testUiState = mutableStateOf(LoginUiState())
+        private set
 
     private val _loginUiState = MutableStateFlow(LoginUiState())
     val loginUiState: StateFlow<LoginUiState> = _loginUiState

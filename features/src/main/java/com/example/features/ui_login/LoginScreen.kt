@@ -15,8 +15,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -41,7 +41,7 @@ fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel()
 ) {
     val loginUiState by viewModel.loginUiState.collectAsStateWithLifecycle(LoginUiState())
-    LoginScreenContent(loginUiState) { intent ->
+    LoginScreenContent(viewModel.testUiState,loginUiState) { intent ->
         viewModel.sendIntent(intent)
     }
     HandleLoginUiState(navHostController, loginUiState) { intent ->
@@ -51,6 +51,7 @@ fun LoginScreen(
 
 @Composable
 fun LoginScreenContent(
+    testUiState: MutableState<LoginUiState>,
     uiState: LoginUiState,
     sendIntent: (intent: LoginIntent) -> Unit
 ) {
@@ -85,7 +86,9 @@ fun LoginScreenContent(
                     TextField(
                         modifier = Modifier,
                         value = accountText.value,
-                        onValueChange = { accountText.value = it }
+                        onValueChange = {
+                            accountText.value = it
+                        }
                     )
                     Button(
                         enabled = accountText.value.isNotEmpty(),
@@ -96,6 +99,7 @@ fun LoginScreenContent(
                         Text(stringResource(R.string.log_in))
                     }
                 }
+                testUiState.value.showLoading
                 if (uiState.showLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(100.dp),
@@ -135,5 +139,6 @@ private fun HandleLoginUiState(
 @Preview
 @Composable
 fun LoginScreenPreview() {
-    LoginScreenContent(LoginUiState()) {}
+    val viewModel: LoginViewModel = hiltViewModel()
+    LoginScreenContent(viewModel.testUiState,LoginUiState()) {}
 }
