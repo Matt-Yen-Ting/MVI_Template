@@ -7,14 +7,14 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.data.common_data.navigation.Screen
+import com.example.data.commondata.navigation.Screen
 import com.example.features.account.AccountScreen
 import com.example.features.more.MoreScreen
 import com.example.mvi_architecture.main.MainViewModel
-import com.example.features.ui_announcement.AnnouncementDetailScreen
-import com.example.features.ui_announcement.AnnouncementScreen
-import com.example.features.ui_home.HomeScreen
-import com.example.features.ui_login.LoginScreen
+import com.example.features.announcement.AnnouncementDetailScreen
+import com.example.features.announcement.AnnouncementScreen
+import com.example.features.home.HomeScreen
+import com.example.features.login.LoginScreen
 
 @Composable
 fun NavGraph(navHostController: NavHostController, viewModel: MainViewModel = hiltViewModel()) {

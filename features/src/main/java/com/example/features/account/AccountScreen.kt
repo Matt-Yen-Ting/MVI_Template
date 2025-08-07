@@ -12,9 +12,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.example.core.R
-import com.example.core.design_system.common_view.BackPreviousIcon
-import com.example.core.design_system.common_view.MainTopBar
-import com.example.features.ui_home.HomeBottomBar
+import com.example.core.designsystem.commonview.BackPreviousIcon
+import com.example.core.designsystem.commonview.MainTopBar
+import com.example.features.home.HomeBottomBar
 
 @Composable
 fun AccountScreen(navHostController: NavHostController) {

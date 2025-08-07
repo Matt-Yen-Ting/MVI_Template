@@ -1,6 +1,5 @@
 package com.example.domain.repository.account
 
-import com.example.domain.model.entites.AnnouncementResponseDto
 import com.example.domain.model.entites.LoginResponseDto
 import com.example.domain.repository.api.ApiRepository
 import javax.inject.Inject
