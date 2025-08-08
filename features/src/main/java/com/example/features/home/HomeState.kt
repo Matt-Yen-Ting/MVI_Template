@@ -1,5 +1,4 @@
-package com.example.features.home.state
-
+package com.example.features.home
 
 data class HomeState(
     val showLoading: Boolean = false,

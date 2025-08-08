@@ -1,7 +1,6 @@
-package com.example.features.announcement.state
+package com.example.features.announcement
 
 import com.example.domain.model.data.AnnouncementListData
-
 
 data class AnnouncementState(
     val showLoading: Boolean = false,
@@ -9,5 +8,3 @@ data class AnnouncementState(
     val getDataFail: Boolean = false,
     val dataList: List<AnnouncementListData> = emptyList(),
 )
-
-

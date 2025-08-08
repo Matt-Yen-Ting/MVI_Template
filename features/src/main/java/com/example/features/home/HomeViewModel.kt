@@ -3,8 +3,8 @@ package com.example.features.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.account.AccountUseCases
-import com.example.features.home.reducer.HomeReducer
-import com.example.features.home.state.HomeState
+import com.example.features.home.HomeReducer
+import com.example.features.home.HomeState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow

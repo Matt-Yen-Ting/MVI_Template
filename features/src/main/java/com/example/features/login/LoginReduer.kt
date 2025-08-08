@@ -1,8 +1,6 @@
-package com.example.features.login.reducer
+package com.example.features.login
 
 import com.example.data.commondata.Reducer
-import com.example.features.login.LoginIntent
-import com.example.features.login.state.LoginState
 import javax.inject.Inject
 
 class LoginReducer @Inject constructor(

@@ -34,7 +34,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.core.designsystem.commonview.BackPreviousIcon
 import com.example.core.designsystem.commonview.MainTopBar
 import com.example.data.commondata.navigation.Screen
-import com.example.features.home.state.HomeState
+import com.example.features.home.HomeState
 import com.example.core.R
 
 @Composable
