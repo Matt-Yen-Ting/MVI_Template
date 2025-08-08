@@ -3,8 +3,8 @@ package com.example.features.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.account.AccountUseCases
-import com.example.features.home.reducer.LogoutReducer
-import com.example.features.home.state.LogoutUiState
+import com.example.features.home.reducer.HomeReducer
+import com.example.features.home.state.HomeState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,11 +16,11 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val accountUseCases: AccountUseCases,
-    private val logoutReducer: LogoutReducer
+    private val homeReducer: HomeReducer
 ) : ViewModel() {
 
-    private val _logoutUiState = MutableStateFlow(LogoutUiState())
-    val logoutUiState: StateFlow<LogoutUiState> = _logoutUiState
+    private val _homeState = MutableStateFlow(HomeState())
+    val homeState: StateFlow<HomeState> = _homeState
 
     fun sendIntent(intent: HomeIntent) {
         when (intent) {
@@ -33,25 +33,25 @@ class HomeViewModel @Inject constructor(
     private fun logout() {
         viewModelScope.launch(
             CoroutineExceptionHandler { context, throwable ->
-                _logoutUiState.update {
-                    logoutReducer.reduce(
-                        _logoutUiState.value,
+                _homeState.update {
+                    homeReducer.reduce(
+                        _homeState.value,
                         HomeIntent.Logout(false, logoutSuccess = false, logoutFail = true)
                     )
                 }
             }
         ) {
-            _logoutUiState.update {
-                logoutReducer.reduce(
-                    _logoutUiState.value,
+            _homeState.update {
+                homeReducer.reduce(
+                    _homeState.value,
                     HomeIntent.Logout(true)
                 )
             }
             accountUseCases.logout()
             accountUseCases.setToken("")
-            _logoutUiState.update {
-                logoutReducer.reduce(
-                    _logoutUiState.value,
+            _homeState.update {
+                homeReducer.reduce(
+                    _homeState.value,
                     HomeIntent.Logout(false, logoutSuccess = true, logoutFail = false)
                 )
             }

@@ -33,7 +33,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.core.designsystem.commonview.BackPreviousIcon
 import com.example.core.designsystem.commonview.MainTopBar
 import com.example.data.commondata.navigation.Screen
-import com.example.features.announcement.state.DataListUiState
+import com.example.features.announcement.state.AnnouncementState
 import com.example.core.R
 
 @Composable
@@ -41,10 +41,10 @@ fun AnnouncementScreen(
     navHostController: NavHostController,
     viewModel: AnnouncementViewModel = hiltViewModel()
 ) {
-    val dataListUiState by viewModel.dataListUiState.collectAsState(DataListUiState())
+    val announcementState by viewModel.announcementState.collectAsState(AnnouncementState())
     AnnouncementScreenContent(
         navHostController,
-        dataListUiState
+        announcementState
     ) { intent ->
         viewModel.sendIntent(intent)
     }
@@ -54,7 +54,7 @@ fun AnnouncementScreen(
 @Composable
 fun AnnouncementScreenContent(
     navHostController: NavHostController,
-    getDataListUiState: DataListUiState,
+    getAnnouncementState: AnnouncementState,
     sendIntent: (AnnouncementIntent) -> Unit
 ) {
     Scaffold(
@@ -80,9 +80,9 @@ fun AnnouncementScreenContent(
         ) {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Column(modifier = Modifier.fillMaxSize()) {
-                    HandleGetDataListUiState(navHostController, getDataListUiState, sendIntent)
+                    HandleGetDataListUiState(navHostController, getAnnouncementState, sendIntent)
                 }
-                if (getDataListUiState.showLoading) {
+                if (getAnnouncementState.showLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(100.dp),
                         color = Color.Red
@@ -96,15 +96,15 @@ fun AnnouncementScreenContent(
 @Composable
 fun HandleGetDataListUiState(
     navHostController: NavHostController,
-    dataListUiState: DataListUiState,
+    announcementState: AnnouncementState,
     sendIntent: (AnnouncementIntent) -> Unit,
 ) {
     val context = LocalContext.current
     when {
-        dataListUiState.getDataSuccess -> {
-            if (dataListUiState.dataList.isNotEmpty()) {
+        announcementState.getDataSuccess -> {
+            if (announcementState.dataList.isNotEmpty()) {
                 LazyColumn(Modifier.fillMaxHeight()) {
-                    items(dataListUiState.dataList) {
+                    items(announcementState.dataList) {
                         Box(
                             modifier = Modifier
                                 .padding(10.dp)
@@ -126,7 +126,7 @@ fun HandleGetDataListUiState(
 
         }
 
-        dataListUiState.getDataFail -> {
+        announcementState.getDataFail -> {
             Toast.makeText(
                 context,
                 stringResource(R.string.failed_to_obtain_list_information),
@@ -139,7 +139,7 @@ fun HandleGetDataListUiState(
 @Preview
 @Composable
 fun AnnouncementScreenContentPreview() {
-    AnnouncementScreenContent(rememberNavController(), DataListUiState()) { }
+    AnnouncementScreenContent(rememberNavController(), AnnouncementState()) { }
 }
 
 

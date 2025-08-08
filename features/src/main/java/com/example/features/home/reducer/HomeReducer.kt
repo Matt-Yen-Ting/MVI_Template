@@ -2,12 +2,12 @@ package com.example.features.home.reducer
 
 import com.example.data.commondata.Reducer
 import com.example.features.home.HomeIntent
-import com.example.features.home.state.LogoutUiState
+import com.example.features.home.state.HomeState
 import javax.inject.Inject
 
-class LogoutReducer @Inject constructor() : Reducer<LogoutUiState, HomeIntent> {
+class HomeReducer @Inject constructor() : Reducer<HomeState, HomeIntent> {
 
-    override fun reduce(oldState: LogoutUiState, intent: HomeIntent): LogoutUiState {
+    override fun reduce(oldState: HomeState, intent: HomeIntent): HomeState {
         return when (intent) {
             is HomeIntent.Logout -> {
                 oldState.copy(

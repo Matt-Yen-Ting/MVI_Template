@@ -1,7 +1,7 @@
 package com.example.features.home.state
 
 
-data class LogoutUiState(
+data class HomeState(
     val showLoading: Boolean = false,
     val logoutSuccess: Boolean = false,
     val logoutFail: Boolean = false

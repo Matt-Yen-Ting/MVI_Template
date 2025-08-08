@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.account.AccountUseCases
 import com.example.features.login.reducer.LoginReducer
-import com.example.features.login.state.LoginUiState
+import com.example.features.login.state.LoginState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,8 +19,8 @@ class LoginViewModel @Inject constructor(
     private val loginReducer: LoginReducer
 ) : ViewModel() {
 
-    private val _loginUiState = MutableStateFlow(LoginUiState())
-    val loginUiState: StateFlow<LoginUiState> = _loginUiState
+    private val _loginState = MutableStateFlow(LoginState())
+    val loginState: StateFlow<LoginState> = _loginState
 
     fun sendIntent(intent: LoginIntent) {
         when (intent) {
@@ -37,9 +37,9 @@ class LoginViewModel @Inject constructor(
 
     private fun login(account: String) {
         viewModelScope.launch(CoroutineExceptionHandler { context, throwable ->
-            _loginUiState.update {
+            _loginState.update {
                 loginReducer.reduce(
-                    _loginUiState.value,
+                    _loginState.value,
                     LoginIntent.Login(
                         account,
                         showLoading = false,
@@ -49,17 +49,17 @@ class LoginViewModel @Inject constructor(
                 )
             }
         }) {
-            _loginUiState.update {
+            _loginState.update {
                 loginReducer.reduce(
-                    _loginUiState.value,
+                    _loginState.value,
                     LoginIntent.Login(account, showLoading = true)
                 )
             }
             accountUseCases.login(account)
             accountUseCases.setToken("TestLoginToken")
-            _loginUiState.update {
+            _loginState.update {
                 loginReducer.reduce(
-                    _loginUiState.value,
+                    _loginState.value,
                     LoginIntent.Login(
                         account,
                         showLoading = false,
@@ -72,9 +72,9 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun reductionUiState() {
-        _loginUiState.update {
+        _loginState.update {
             loginReducer.reduce(
-                _loginUiState.value,
+                _loginState.value,
                 LoginIntent.ResetState(
                     "",
                     showLoading = false,

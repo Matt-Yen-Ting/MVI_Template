@@ -2,13 +2,13 @@ package com.example.features.login.reducer
 
 import com.example.data.commondata.Reducer
 import com.example.features.login.LoginIntent
-import com.example.features.login.state.LoginUiState
+import com.example.features.login.state.LoginState
 import javax.inject.Inject
 
 class LoginReducer @Inject constructor(
-) : Reducer<LoginUiState, LoginIntent> {
+) : Reducer<LoginState, LoginIntent> {
 
-    override fun reduce(oldState: LoginUiState, intent: LoginIntent): LoginUiState {
+    override fun reduce(oldState: LoginState, intent: LoginIntent): LoginState {
         return when (intent) {
             is LoginIntent.Login -> {
                 oldState.copy(

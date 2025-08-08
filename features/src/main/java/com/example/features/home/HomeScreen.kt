@@ -34,7 +34,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.core.designsystem.commonview.BackPreviousIcon
 import com.example.core.designsystem.commonview.MainTopBar
 import com.example.data.commondata.navigation.Screen
-import com.example.features.home.state.LogoutUiState
+import com.example.features.home.state.HomeState
 import com.example.core.R
 
 @Composable
@@ -42,7 +42,7 @@ fun HomeScreen(
     navHostController: NavHostController,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    val logoutUiState by viewModel.logoutUiState.collectAsStateWithLifecycle(LogoutUiState())
+    val homeState by viewModel.homeState.collectAsStateWithLifecycle(HomeState())
 
     val showLogoutDialog = remember {
         mutableStateOf(false)
@@ -55,13 +55,13 @@ fun HomeScreen(
     HomeScreenContent(
         navHostController,
         showLogoutDialog,
-        logoutUiState
+        homeState
     )
     LogoutDialog(showLogoutDialog) { intent ->
         viewModel.sendIntent(intent)
     }
     ApiErrorDialog(showApiErrorDialog)
-    HandleLogoutUiState(navHostController, showApiErrorDialog, logoutUiState)
+    HandleLogoutUiState(navHostController, showApiErrorDialog, homeState)
 
 
 }
@@ -70,7 +70,7 @@ fun HomeScreen(
 fun HomeScreenContent(
     navHostController: NavHostController,
     showLogoutDialog: MutableState<Boolean>,
-    logoutUiState: LogoutUiState
+    homeState: HomeState
 ) {
     Scaffold(
         topBar = {
@@ -107,7 +107,7 @@ fun HomeScreenContent(
                     Text(stringResource(R.string.check_announcement))
                 }
 
-                if (logoutUiState.showLoading) {
+                if (homeState.showLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(100.dp),
                         color = Color.Red
@@ -123,11 +123,11 @@ fun HomeScreenContent(
 private fun HandleLogoutUiState(
     navHostController: NavHostController,
     showApiErrorDialog: MutableState<Boolean>,
-    logoutUiState: LogoutUiState
+    homeState: HomeState
 ) {
     val context = LocalContext.current
     when {
-        logoutUiState.logoutSuccess -> {
+        homeState.logoutSuccess -> {
             Toast.makeText(context, stringResource(R.string.logout_success), Toast.LENGTH_SHORT).show()
             SideEffect {
                 navHostController.popBackStack()
@@ -135,7 +135,7 @@ private fun HandleLogoutUiState(
             }
         }
 
-        logoutUiState.logoutFail -> {
+        homeState.logoutFail -> {
             showApiErrorDialog.value = true
         }
     }
@@ -198,5 +198,5 @@ fun HomeScreenContentPreview() {
     val showLogoutDialog = remember {
         mutableStateOf(false)
     }
-    HomeScreenContent(rememberNavController(), showLogoutDialog, LogoutUiState())
+    HomeScreenContent(rememberNavController(), showLogoutDialog, HomeState())
 }

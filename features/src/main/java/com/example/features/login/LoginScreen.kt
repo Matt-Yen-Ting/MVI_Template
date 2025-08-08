@@ -31,7 +31,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.example.core.designsystem.commonview.MainTopBar
 import com.example.data.commondata.navigation.Screen
-import com.example.features.login.state.LoginUiState
+import com.example.features.login.state.LoginState
 import com.example.core.R
 
 @Composable
@@ -39,18 +39,18 @@ fun LoginScreen(
     navHostController: NavHostController,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
-    val loginUiState by viewModel.loginUiState.collectAsStateWithLifecycle(LoginUiState())
-    LoginScreenContent(loginUiState) { intent ->
+    val loginState by viewModel.loginState.collectAsStateWithLifecycle(LoginState())
+    LoginScreenContent(loginState) { intent ->
         viewModel.sendIntent(intent)
     }
-    HandleLoginUiState(navHostController, loginUiState) { intent ->
+    HandleLoginUiState(navHostController, loginState) { intent ->
         viewModel.sendIntent(intent)
     }
 }
 
 @Composable
 fun LoginScreenContent(
-    uiState: LoginUiState,
+    uiState: LoginState,
     sendIntent: (intent: LoginIntent) -> Unit
 ) {
     Scaffold(
@@ -110,7 +110,7 @@ fun LoginScreenContent(
 @Composable
 private fun HandleLoginUiState(
     navHostController: NavHostController,
-    uiState: LoginUiState,
+    uiState: LoginState,
     sendIntent: (LoginIntent) -> Unit
 ) {
     val context = LocalContext.current
@@ -134,5 +134,5 @@ private fun HandleLoginUiState(
 @Preview
 @Composable
 fun LoginScreenPreview() {
-    LoginScreenContent(LoginUiState()) {}
+    LoginScreenContent(LoginState()) {}
 }

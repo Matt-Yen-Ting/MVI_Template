@@ -61,8 +61,8 @@ project/
 2. 一個頁面一個ViewModel
 3. ViewModel 觸發Intent 統一 function name sendIntent
 4. StateFlow 統一使用update{ } 更新Reducer
-5. 每個UiState 用特定Ui、事件命名，Ex:LoginUiState、CancelButtonUiState
-6. Reducer 繼承共用Reducer實作更新UiState的Reducer
+5. 每個Screen一個State
+6. Reducer 繼承共用Reducer實作更新State的Reducer
 
 ### Model相關
 1. 資料邏輯interface、資料邏輯interface implementation 放 Repository，並建立相關類別資料夾
