@@ -5,7 +5,6 @@ plugins {
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.navigation.safeargs.kotlin)
     alias(libs.plugins.compose.compiler)
-
 }
 
 android {

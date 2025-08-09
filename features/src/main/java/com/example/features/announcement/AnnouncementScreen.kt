@@ -33,7 +33,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.core.designsystem.commonview.BackPreviousIcon
 import com.example.core.designsystem.commonview.MainTopBar
 import com.example.data.commondata.navigation.Screen
-import com.example.features.announcement.AnnouncementState
 import com.example.core.R
 
 @Composable
@@ -112,7 +111,7 @@ fun HandleGetDataListUiState(
                                     BorderStroke(2.dp, Color.Black)
                                 )
                                 .clickable {
-                                    navHostController.navigate(Screen.AnnouncementDetailScreen.route + "?title=${it.title}")
+                                    navHostController.navigate(Screen.AnnouncementDetail(it.title))
                                 }
                         ) {
                             Column(modifier = Modifier.padding(3.dp)) {

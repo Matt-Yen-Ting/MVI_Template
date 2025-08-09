@@ -3,10 +3,9 @@ package com.example.mvi_architecture
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
+import androidx.navigation.toRoute
 import com.example.data.commondata.navigation.Screen
 import com.example.features.account.AccountScreen
 import com.example.features.more.MoreScreen
@@ -20,41 +19,34 @@ import com.example.features.login.LoginScreen
 fun NavGraph(navHostController: NavHostController, viewModel: MainViewModel = hiltViewModel()) {
     NavHost(
         navController = navHostController,
-        startDestination = if (viewModel.signInViewModelDelegate.isUserSignInValue.isNotEmpty()) Screen.HomeScreen.route else Screen.LoginScreen.route
+        startDestination = if (viewModel.signInViewModelDelegate.isUserSignInValue.isNotEmpty()) Screen.Home else Screen.Login
     ) {
-
-        composable(Screen.LoginScreen.route) {
+        composable<Screen.Login> {
             LoginScreen(navHostController)
         }
 
-        composable(Screen.HomeScreen.route) {
+        composable<Screen.Home> {
             HomeScreen(navHostController)
         }
 
-        composable(Screen.AnnouncementScreen.route) {
+        composable<Screen.Announcement> {
             AnnouncementScreen(navHostController)
         }
 
-        composable(
-            Screen.AnnouncementDetailScreen.route + "?title={title}",
-            arguments = listOf(
-                navArgument("title") {
-                    type = NavType.StringType
-                    defaultValue = ""
-                }
-            )
-        ) { stackEntry ->
+        composable<Screen.AnnouncementDetail>
+        { stackEntry ->
+            val announcementDetail: Screen.AnnouncementDetail = stackEntry.toRoute()
             AnnouncementDetailScreen(
                 navHostController,
-                stackEntry.arguments?.getString("title") ?: ""
+                announcementDetail.title
             )
         }
 
-        composable(Screen.AccountScreen.route) {
+        composable<Screen.Account> {
             AccountScreen(navHostController)
         }
 
-        composable(Screen.MoreScreen.route) {
+        composable<Screen.More> {
             MoreScreen(navHostController)
         }
     }

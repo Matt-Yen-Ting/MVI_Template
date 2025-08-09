@@ -1,6 +1,7 @@
 package com.example.features.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
@@ -8,9 +9,9 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Text
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.Text
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,6 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -37,21 +39,21 @@ fun HomeBottomBar(
 ) {
     val screens = listOf(
         HomeBottomBarData(
-            Screen.HomeScreen.route,
+            Screen.Home,
             R.drawable.ic_gray_main,
             R.drawable.ic_green_main,
             stringResource(R.string.overview)
 
         ),
         HomeBottomBarData(
-            Screen.AccountScreen.route,
+            Screen.Account,
             R.drawable.ic_gray_account,
             R.drawable.ic_green_account,
             stringResource(R.string.account)
 
         ),
         HomeBottomBarData(
-            Screen.MoreScreen.route,
+            Screen.More,
             R.drawable.ic_gray_more,
             R.drawable.ic_green_more,
             stringResource(R.string.more)
@@ -62,10 +64,9 @@ fun HomeBottomBar(
     val currentDestination = navBackStackEntry?.destination
 
     Column {
-        BottomNavigation(
-            modifier = Modifier.padding(bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()),
-            backgroundColor = Color.White,
-            elevation = 0.dp
+        NavigationBar (
+            modifier = Modifier.padding(bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()).background(
+                Color.White),
         ) {
             screens.forEach { bottomBarData ->
                 AddItem(
@@ -89,11 +90,11 @@ fun RowScope.AddItem(
     val isSelected = remember {
         mutableStateOf(false)
     }
-    BottomNavigationItem(
+    NavigationBarItem(
         label = {
             Text(homeBottomBarData.title, color =
                 when {
-                    isHomeChildRoute && homeBottomBarData.route == currentDestination?.route -> Color.Green
+                    isHomeChildRoute && isSelected.value -> Color.Green
                     else -> Color.Black
                 }
             )
@@ -103,7 +104,7 @@ fun RowScope.AddItem(
                 modifier = Modifier.size(36.dp),
                 painter = painterResource(
                     when {
-                        isHomeChildRoute && homeBottomBarData.route == currentDestination?.route -> homeBottomBarData.selectedIconId
+                        isHomeChildRoute && isSelected.value -> homeBottomBarData.selectedIconId
                         else -> homeBottomBarData.notSelectedIconId
                     }
                 ),
@@ -111,11 +112,9 @@ fun RowScope.AddItem(
             )
         },
         selected = currentDestination?.hierarchy?.any {
-            isSelected.value = it.route == homeBottomBarData.route
-            return@any it.route == homeBottomBarData.route
+            isSelected.value = it.hasRoute(homeBottomBarData.route::class)
+            return@any it.hasRoute(homeBottomBarData.route::class)
         } == true,
-        selectedContentColor = Color.Green,
-        unselectedContentColor = Color.Black,
         onClick = {
             navHostController.navigate(homeBottomBarData.route)
         }

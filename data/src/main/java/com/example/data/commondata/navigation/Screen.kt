@@ -1,13 +1,29 @@
 package com.example.data.commondata.navigation
 
-sealed class Screen(val route: String) {
-    data object SplashScreen : Screen("splash")
-    data object LoginScreen : Screen("login")
-    data object HomeScreen : Screen("home")
-    data object AnnouncementScreen : Screen("announcement")
-    data object AnnouncementDetailScreen : Screen("announcement-detail")
+import kotlinx.serialization.Serializable
 
-    data object AccountScreen: Screen("account")
 
-    data object MoreScreen: Screen("more")
+sealed class Screen {
+
+    @Serializable
+    data object Splash : Screen()
+
+    @Serializable
+    data object Login : Screen()
+
+    @Serializable
+    data object Home : Screen()
+
+    @Serializable
+    data object Announcement : Screen()
+
+    @Serializable
+    data class AnnouncementDetail(val title: String) : Screen()
+
+    @Serializable
+    data object Account : Screen()
+
+    @Serializable
+    data object More : Screen()
+
 }

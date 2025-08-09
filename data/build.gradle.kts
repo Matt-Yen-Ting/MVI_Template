@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.ksp)
+    kotlin(libs.plugins.serialization.get().pluginId).version(libs.versions.kotlin)
 }
 
 android {
@@ -50,6 +51,8 @@ dependencies {
     api(libs.okhttp)
     api(libs.okhttp.interceptor)
 
+    // Serialization
+    api(libs.kotlinx.serialization)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

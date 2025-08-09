@@ -34,7 +34,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.core.designsystem.commonview.BackPreviousIcon
 import com.example.core.designsystem.commonview.MainTopBar
 import com.example.data.commondata.navigation.Screen
-import com.example.features.home.HomeState
 import com.example.core.R
 
 @Composable
@@ -102,7 +101,7 @@ fun HomeScreenContent(
                 contentAlignment = Alignment.Center
             ) {
                 Button(onClick = {
-                    navHostController.navigate(Screen.AnnouncementScreen.route)
+                    navHostController.navigate(Screen.Announcement)
                 }) {
                     Text(stringResource(R.string.check_announcement))
                 }
@@ -131,7 +130,7 @@ private fun HandleLogoutUiState(
             Toast.makeText(context, stringResource(R.string.logout_success), Toast.LENGTH_SHORT).show()
             SideEffect {
                 navHostController.popBackStack()
-                navHostController.navigate(Screen.LoginScreen.route)
+                navHostController.navigate(Screen.Login)
             }
         }
 

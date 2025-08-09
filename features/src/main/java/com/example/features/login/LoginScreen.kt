@@ -31,7 +31,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.example.core.designsystem.commonview.MainTopBar
 import com.example.data.commondata.navigation.Screen
-import com.example.features.login.LoginState
 import com.example.core.R
 
 @Composable
@@ -120,7 +119,7 @@ private fun HandleLoginUiState(
             Toast.makeText(context, "登入成功!!", Toast.LENGTH_SHORT).show()
             sendIntent(LoginIntent.ResetState())
             SideEffect {
-                navHostController.navigate(Screen.HomeScreen.route)
+                navHostController.navigate(Screen.Home)
             }
         }
 

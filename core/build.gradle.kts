@@ -56,6 +56,7 @@ dependencies {
     api(libs.material3)
     api(libs.compose.material)
     api(libs.compose.foundation)
+    api(libs.navigation.cpmpose)
     api(libs.hilt.navigation.compose)
     api(libs.compose.preview)
     api(libs.compose.ui)
