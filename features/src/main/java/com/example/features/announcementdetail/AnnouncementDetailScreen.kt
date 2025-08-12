@@ -1,4 +1,4 @@
-package com.example.features.announcement
+package com.example.features.announcementdetail
 
 import android.os.Build
 import androidx.compose.foundation.layout.Arrangement

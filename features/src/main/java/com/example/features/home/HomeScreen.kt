@@ -35,6 +35,8 @@ import com.example.core.designsystem.commonview.BackPreviousIcon
 import com.example.core.designsystem.commonview.MainTopBar
 import com.example.data.commondata.navigation.Screen
 import com.example.core.R
+import com.example.core.designsystem.commonview.MainBottomBar
+import com.example.features.home.state.HomeState
 
 @Composable
 fun HomeScreen(
@@ -85,7 +87,7 @@ fun HomeScreenContent(
             )
         },
         bottomBar = {
-            HomeBottomBar(navHostController, true)
+            MainBottomBar(navHostController, true)
         }
     ) { contentPadding ->
         Column(

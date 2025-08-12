@@ -1,4 +1,4 @@
-package com.example.features.home
+package com.example.core.designsystem.commonview
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -33,7 +33,7 @@ import com.example.data.commondata.navigation.Screen
 import com.example.core.R
 
 @Composable
-fun HomeBottomBar(
+fun MainBottomBar(
     navHostController: NavHostController,
     isHomeChildRoute: Boolean = false,
 ) {
@@ -124,5 +124,5 @@ fun RowScope.AddItem(
 @Preview
 @Composable
 fun HomeBottomBarPreview() {
-    HomeBottomBar(rememberNavController())
+    MainBottomBar(rememberNavController())
 }

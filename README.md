@@ -44,17 +44,18 @@ project/
 ### View相關
 1. 全App只有一個App(Application)、Activity(MainActivity)
 2. JetPack Compose 每個頁面以Screen結尾
-3. 命名Class 採大駝峰、function 採小駝峰
-4. 需要Context 透過LocalContext.current取得
-5. 無法透過Compose實作、需要用舊的View，透過Android View引入Compose
-6. Ui變化透過State
-7. values strings等檔案引用Core Module 內的values，引用「R.」時需特別注意
-8. Color 顏色用 Core Module內design_system theme package 的Color file
-9. Theme 用 Core Module內design_system theme package 的Theme file
-10. Shape 用 Core Module內design_system theme package Shape file
-11. 全App共用View 放在 Core Module內designsystem commonview package
-12. drawable放 Core Module內 resource drawable內
-13. Text 文字統一抽離放string resources
+3. 一個種類的頁面在feature module package 創建相關package Ex:home、login
+4. 命名Class 採大駝峰、function 採小駝峰
+5. 需要Context 透過LocalContext.current取得
+6. 無法透過Compose實作、需要用舊的View，透過Android View引入Compose
+7. Ui變化透過State
+8. values strings等檔案引用Core Module 內的values，引用「R.」時需特別注意
+9. Color 顏色用 Core Module內design_system theme package 的Color file
+10. Theme 用 Core Module內design_system theme package 的Theme file
+11. Shape 用 Core Module內design_system theme package Shape file
+12. 全App共用View 放在 Core Module內designsystem commonview package
+13. drawable放 Core Module內 resource drawable內
+14. Text 文字統一抽離放string resources
 
 ### ViewModel相關
 1. ViewModel class 統一用ViewModel結尾，Ex:LoginViewModel

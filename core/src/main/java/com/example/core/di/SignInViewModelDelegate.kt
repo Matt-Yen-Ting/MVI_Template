@@ -14,7 +14,7 @@ interface SignInViewModelDelegate {
 
 internal class SignInViewModelDelegateImpl @Inject constructor(
     preferencesDataStore: PreferencesDataStore,
-    @ApplicationScope val applicationScope: CoroutineScope,
+    @ApplicationScope applicationScope: CoroutineScope,
 
     ) : SignInViewModelDelegate {
     override val isUserSignIn: StateFlow<String> =

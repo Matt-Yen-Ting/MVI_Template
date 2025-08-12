@@ -1,4 +1,4 @@
-package com.example.features.login
+package com.example.features.login.state
 
 data class LoginState(
     val showLoading: Boolean = false,

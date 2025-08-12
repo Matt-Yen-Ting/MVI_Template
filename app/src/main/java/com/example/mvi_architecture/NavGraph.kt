@@ -10,7 +10,7 @@ import com.example.data.commondata.navigation.Screen
 import com.example.features.account.AccountScreen
 import com.example.features.more.MoreScreen
 import com.example.mvi_architecture.main.MainViewModel
-import com.example.features.announcement.AnnouncementDetailScreen
+import com.example.features.announcementdetail.AnnouncementDetailScreen
 import com.example.features.announcement.AnnouncementScreen
 import com.example.features.home.HomeScreen
 import com.example.features.login.LoginScreen

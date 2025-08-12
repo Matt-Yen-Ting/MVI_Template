@@ -1,4 +1,4 @@
-package com.example.features.announcement
+package com.example.features.announcementdetail
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

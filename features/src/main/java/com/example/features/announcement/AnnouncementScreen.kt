@@ -34,6 +34,7 @@ import com.example.core.designsystem.commonview.BackPreviousIcon
 import com.example.core.designsystem.commonview.MainTopBar
 import com.example.data.commondata.navigation.Screen
 import com.example.core.R
+import com.example.features.announcement.state.AnnouncementState
 
 @Composable
 fun AnnouncementScreen(

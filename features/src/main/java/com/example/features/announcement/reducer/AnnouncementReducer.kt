@@ -1,6 +1,8 @@
-package com.example.features.announcement
+package com.example.features.announcement.reducer
 
 import com.example.data.commondata.Reducer
+import com.example.features.announcement.AnnouncementIntent
+import com.example.features.announcement.state.AnnouncementState
 import javax.inject.Inject
 
 class AnnouncementReducer @Inject constructor() : Reducer<AnnouncementState, AnnouncementIntent> {

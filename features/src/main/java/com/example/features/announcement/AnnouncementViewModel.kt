@@ -2,9 +2,9 @@ package com.example.features.announcement
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.features.announcement.AnnouncementReducer
+import com.example.features.announcement.reducer.AnnouncementReducer
 import com.example.domain.usecase.announcement.AnnouncementUseCases
-import com.example.features.announcement.AnnouncementState
+import com.example.features.announcement.state.AnnouncementState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -1,6 +1,8 @@
-package com.example.features.home
+package com.example.features.home.reducer
 
 import com.example.data.commondata.Reducer
+import com.example.features.home.HomeIntent
+import com.example.features.home.state.HomeState
 import javax.inject.Inject
 
 class HomeReducer @Inject constructor() : Reducer<HomeState, HomeIntent> {

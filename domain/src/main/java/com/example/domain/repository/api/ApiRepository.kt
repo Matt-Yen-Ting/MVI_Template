@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class ApiRepository @Inject constructor(
     private val testApi: TestApi,
-    @IoDispatcher val ioDispatcher: CoroutineDispatcher
+    @param:IoDispatcher val ioDispatcher: CoroutineDispatcher
 ) {
 
     suspend fun login(account: String): LoginResponseDto =

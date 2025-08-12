@@ -1,4 +1,4 @@
-package com.example.features.announcement
+package com.example.features.announcement.state
 
 import com.example.domain.model.data.AnnouncementListData
 
