@@ -38,9 +38,7 @@ fun AccountScreenContent(
                 }
             )
         },
-        bottomBar = {
-            MainBottomBar(navHostController, true)
-        }
+
     ) { contentPadding ->
         Column(
             modifier = Modifier

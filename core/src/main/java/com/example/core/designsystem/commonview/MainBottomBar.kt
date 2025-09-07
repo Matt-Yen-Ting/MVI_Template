@@ -35,7 +35,6 @@ import com.example.core.R
 @Composable
 fun MainBottomBar(
     navHostController: NavHostController,
-    isHomeChildRoute: Boolean = false,
 ) {
     val screens = listOf(
         HomeBottomBarData(
@@ -70,7 +69,6 @@ fun MainBottomBar(
         ) {
             screens.forEach { bottomBarData ->
                 AddItem(
-                    isHomeChildRoute,
                     navHostController,
                     currentDestination,
                     bottomBarData
@@ -82,7 +80,6 @@ fun MainBottomBar(
 
 @Composable
 fun RowScope.AddItem(
-    isHomeChildRoute: Boolean = false,
     navHostController: NavHostController,
     currentDestination: NavDestination?,
     homeBottomBarData: HomeBottomBarData
@@ -94,7 +91,7 @@ fun RowScope.AddItem(
         label = {
             Text(homeBottomBarData.title, color =
                 when {
-                    isHomeChildRoute && isSelected.value -> Color.Green
+                    isSelected.value -> Color.Green
                     else -> Color.Black
                 }
             )
@@ -104,7 +101,7 @@ fun RowScope.AddItem(
                 modifier = Modifier.size(36.dp),
                 painter = painterResource(
                     when {
-                        isHomeChildRoute && isSelected.value -> homeBottomBarData.selectedIconId
+                        isSelected.value -> homeBottomBarData.selectedIconId
                         else -> homeBottomBarData.notSelectedIconId
                     }
                 ),

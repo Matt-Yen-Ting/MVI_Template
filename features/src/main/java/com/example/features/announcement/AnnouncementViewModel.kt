@@ -38,9 +38,9 @@ class AnnouncementViewModel @Inject constructor(
 
     private fun getDataList() {
         viewModelScope.launch(CoroutineExceptionHandler { context, throwable ->
-            _announcementState.update {
+            _announcementState.update { oldState ->
                 announcementReducer.reduce(
-                    _announcementState.value,
+                    oldState,
                     AnnouncementIntent.GetDataList(
                         false,
                         getDataSuccess = false,
@@ -50,16 +50,16 @@ class AnnouncementViewModel @Inject constructor(
             }
         }
         ) {
-            _announcementState.update {
+            _announcementState.update { oldState ->
                 announcementReducer.reduce(
-                    _announcementState.value,
+                    oldState,
                     AnnouncementIntent.GetDataList(true)
                 )
             }
             val announcementListData = announcementUseCases.getAnnouncementList()
-            _announcementState.update {
+            _announcementState.update { oldState ->
                 announcementReducer.reduce(
-                    _announcementState.value,
+                    oldState,
                     AnnouncementIntent.GetDataList(
                         false,
                         getDataSuccess = true,

@@ -86,9 +86,6 @@ fun HomeScreenContent(
                 }
             )
         },
-        bottomBar = {
-            MainBottomBar(navHostController, true)
-        }
     ) { contentPadding ->
         Column(
             modifier = Modifier
@@ -129,11 +126,11 @@ private fun HandleLogoutUiState(
     val context = LocalContext.current
     when {
         homeState.logoutSuccess -> {
-            Toast.makeText(context, stringResource(R.string.logout_success), Toast.LENGTH_SHORT).show()
-            SideEffect {
-                navHostController.popBackStack()
-                navHostController.navigate(Screen.Login)
-            }
+            Toast.makeText(context, stringResource(R.string.logout_success), Toast.LENGTH_SHORT)
+                .show()
+            navHostController.popBackStack()
+            navHostController.navigate(Screen.Login)
+
         }
 
         homeState.logoutFail -> {

@@ -36,9 +36,6 @@ fun MoreScreenContent(navHostController: NavHostController) {
                 }
             )
         },
-        bottomBar = {
-            MainBottomBar(navHostController, true)
-        }
     ) { contentPadding ->
         Column(
             modifier = Modifier

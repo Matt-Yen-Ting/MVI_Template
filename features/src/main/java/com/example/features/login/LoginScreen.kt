@@ -119,9 +119,8 @@ private fun HandleLoginUiState(
         uiState.loginSuccess -> {
             Toast.makeText(context, "登入成功!!", Toast.LENGTH_SHORT).show()
             sendIntent(LoginIntent.ResetState())
-            SideEffect {
                 navHostController.navigate(Screen.Home)
-            }
+
         }
 
         uiState.loginFail -> {
