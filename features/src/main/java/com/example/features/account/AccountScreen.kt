@@ -14,7 +14,6 @@ import androidx.navigation.NavHostController
 import com.example.core.R
 import com.example.core.designsystem.commonview.BackPreviousIcon
 import com.example.core.designsystem.commonview.MainTopBar
-import com.example.core.designsystem.commonview.MainBottomBar
 
 @Composable
 fun AccountScreen(navHostController: NavHostController) {
@@ -38,9 +37,7 @@ fun AccountScreenContent(
                 }
             )
         },
-        bottomBar = {
-            MainBottomBar(navHostController, true)
-        }
+
     ) { contentPadding ->
         Column(
             modifier = Modifier

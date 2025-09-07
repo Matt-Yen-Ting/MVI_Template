@@ -33,25 +33,25 @@ class HomeViewModel @Inject constructor(
     private fun logout() {
         viewModelScope.launch(
             CoroutineExceptionHandler { context, throwable ->
-                _homeState.update {
+                _homeState.update { oldState ->
                     homeReducer.reduce(
-                        _homeState.value,
+                        oldState,
                         HomeIntent.Logout(false, logoutSuccess = false, logoutFail = true)
                     )
                 }
             }
         ) {
-            _homeState.update {
+            _homeState.update { oldState ->
                 homeReducer.reduce(
-                    _homeState.value,
+                    oldState,
                     HomeIntent.Logout(true)
                 )
             }
             accountUseCases.logout()
             accountUseCases.setToken("")
-            _homeState.update {
+            _homeState.update { oldState ->
                 homeReducer.reduce(
-                    _homeState.value,
+                    oldState,
                     HomeIntent.Logout(false, logoutSuccess = true, logoutFail = false)
                 )
             }

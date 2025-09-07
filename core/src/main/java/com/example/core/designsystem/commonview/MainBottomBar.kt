@@ -4,14 +4,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,7 +32,6 @@ import com.example.core.R
 @Composable
 fun MainBottomBar(
     navHostController: NavHostController,
-    isHomeChildRoute: Boolean = false,
 ) {
     val screens = listOf(
         HomeBottomBarData(
@@ -65,12 +61,11 @@ fun MainBottomBar(
 
     Column {
         NavigationBar (
-            modifier = Modifier.padding(bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()).background(
+            modifier = Modifier.background(
                 Color.White),
         ) {
             screens.forEach { bottomBarData ->
                 AddItem(
-                    isHomeChildRoute,
                     navHostController,
                     currentDestination,
                     bottomBarData
@@ -82,7 +77,6 @@ fun MainBottomBar(
 
 @Composable
 fun RowScope.AddItem(
-    isHomeChildRoute: Boolean = false,
     navHostController: NavHostController,
     currentDestination: NavDestination?,
     homeBottomBarData: HomeBottomBarData
@@ -92,19 +86,14 @@ fun RowScope.AddItem(
     }
     NavigationBarItem(
         label = {
-            Text(homeBottomBarData.title, color =
-                when {
-                    isHomeChildRoute && isSelected.value -> Color.Green
-                    else -> Color.Black
-                }
-            )
+            Text(homeBottomBarData.title)
         },
         icon = {
             Image(
                 modifier = Modifier.size(36.dp),
                 painter = painterResource(
                     when {
-                        isHomeChildRoute && isSelected.value -> homeBottomBarData.selectedIconId
+                        isSelected.value -> homeBottomBarData.selectedIconId
                         else -> homeBottomBarData.notSelectedIconId
                     }
                 ),
@@ -117,7 +106,11 @@ fun RowScope.AddItem(
         } == true,
         onClick = {
             navHostController.navigate(homeBottomBarData.route)
-        }
+        },
+         colors = NavigationBarItemDefaults.colors(
+             selectedTextColor = Color.Green,
+             unselectedTextColor = Color.Black
+         )
     )
 }
 

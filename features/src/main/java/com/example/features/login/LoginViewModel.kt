@@ -37,9 +37,9 @@ class LoginViewModel @Inject constructor(
 
     private fun login(account: String) {
         viewModelScope.launch(CoroutineExceptionHandler { context, throwable ->
-            _loginState.update {
+            _loginState.update { oldState ->
                 loginReducer.reduce(
-                    _loginState.value,
+                    oldState,
                     LoginIntent.Login(
                         account,
                         showLoading = false,
@@ -49,17 +49,17 @@ class LoginViewModel @Inject constructor(
                 )
             }
         }) {
-            _loginState.update {
+            _loginState.update { oldState ->
                 loginReducer.reduce(
-                    _loginState.value,
+                    oldState,
                     LoginIntent.Login(account, showLoading = true)
                 )
             }
             accountUseCases.login(account)
             accountUseCases.setToken("TestLoginToken")
-            _loginState.update {
+            _loginState.update { oldState ->
                 loginReducer.reduce(
-                    _loginState.value,
+                    oldState,
                     LoginIntent.Login(
                         account,
                         showLoading = false,
@@ -72,9 +72,9 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun reductionUiState() {
-        _loginState.update {
+        _loginState.update { oldState ->
             loginReducer.reduce(
-                _loginState.value,
+                oldState,
                 LoginIntent.ResetState(
                     "",
                     showLoading = false,

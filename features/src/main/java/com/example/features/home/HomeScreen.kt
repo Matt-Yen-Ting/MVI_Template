@@ -35,7 +35,6 @@ import com.example.core.designsystem.commonview.BackPreviousIcon
 import com.example.core.designsystem.commonview.MainTopBar
 import com.example.data.commondata.navigation.Screen
 import com.example.core.R
-import com.example.core.designsystem.commonview.MainBottomBar
 import com.example.features.home.state.HomeState
 
 @Composable
@@ -86,9 +85,6 @@ fun HomeScreenContent(
                 }
             )
         },
-        bottomBar = {
-            MainBottomBar(navHostController, true)
-        }
     ) { contentPadding ->
         Column(
             modifier = Modifier
@@ -129,11 +125,11 @@ private fun HandleLogoutUiState(
     val context = LocalContext.current
     when {
         homeState.logoutSuccess -> {
-            Toast.makeText(context, stringResource(R.string.logout_success), Toast.LENGTH_SHORT).show()
-            SideEffect {
-                navHostController.popBackStack()
-                navHostController.navigate(Screen.Login)
-            }
+            Toast.makeText(context, stringResource(R.string.logout_success), Toast.LENGTH_SHORT)
+                .show()
+            navHostController.popBackStack()
+            navHostController.navigate(Screen.Login)
+
         }
 
         homeState.logoutFail -> {
